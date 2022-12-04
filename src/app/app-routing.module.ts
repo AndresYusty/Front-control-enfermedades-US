@@ -4,9 +4,9 @@ import { GestionarEnfermedadesComponent } from './gestionar-enfermedades/gestion
 import { GestionarEstudiantesComponent } from './gestionar-estudiantes/gestionar-estudiantes.component';
 
 const routes: Routes = [
-  {path:'', component: GestionarEstudiantesComponent},
-  {path: 'gestionar-estudiantes', component: GestionarEstudiantesComponent},
-  {path: 'gestionar-enfermedades', component: GestionarEnfermedadesComponent },
+  {path:'', component: GestionarEstudiantesComponent}, //cuando no escriba nada = va a redirigir al componente de Gestionar estudiante
+  {path: 'gestionar-estudiantes', component: GestionarEstudiantesComponent}, //cuando no escriba nada = va a redirigir al componente de Gestionar estudiante
+  {path: 'gestionar-enfermedades', component: GestionarEnfermedadesComponent }, //cuando no escriba nada = va a redirigir al componente de Gestionar estudiante
 
 ];
 
