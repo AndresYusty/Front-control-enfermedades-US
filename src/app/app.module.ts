@@ -5,24 +5,43 @@ import { AppComponent } from './app.component';
 import { GestionarEnfermedadesComponent } from './gestionar-enfermedades/gestionar-enfermedades.component';
 import { GestionarEstudiantesComponent } from './gestionar-estudiantes/gestionar-estudiantes.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatButtonModule} from '@angular/material/button';
+import { HttpClientModule } from '@angular/common/http';
+import { GuardarEstudianteComponent } from './guardar-estudiante/guardar-estudiante.component';
+import {MatDialog, MatDialogModule} from '@angular/material/dialog';
+import {MatSelectModule} from '@angular/material/select';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatInputModule } from '@angular/material/input';
+
 
 @NgModule({
   declarations: [
     AppComponent,
 
     GestionarEnfermedadesComponent,
-    GestionarEstudiantesComponent
+    GestionarEstudiantesComponent,
+    GuardarEstudianteComponent,
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
+    MatDialogModule,
     BrowserAnimationsModule,
-    MatButtonModule
-  
+    MatInputModule,
+    MatSelectModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    ReactiveFormsModule,
 
   ],
-  providers: [],
+  providers: [
+    {provide: MAT_DATE_LOCALE, useValue: 'es'} //Agregamos el idioma que vamos a usar en las fechas
+
+
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

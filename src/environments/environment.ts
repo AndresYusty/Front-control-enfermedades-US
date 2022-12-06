@@ -3,8 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
-};
+  production: false,
+  urlApi: "http://localhost:8282/api" //indicamos donde se encuentra nuestro backend       "/api" se refiere a que todos nuestros servicios los hemos iniciado de esta forma en el backend
+};                                                                                          // de esta forma es nuestro prefijo para realizar las peticiones
 
 /*
  * For easier debugging in development mode, you can import the following file

@@ -1,0 +1,86 @@
+<h2 mat-dialog-title>Registrar Estudiante</h2>
+<mat-dialog-content>
+
+
+  <form [formGroup]="formEstudiante">
+
+    <div class="row">
+
+      <div class="col-12">
+
+        <mat-form-field appearance="fill">
+          <mat-label>Tipo Identificacion</mat-label>
+          <mat-select formControlName="idTipoIdentificacion" >
+            <mat-option *ngFor="let item of selectTipoIdentificacion" [value]="item.id"> <!--Para saber que es lo que tiene el select, creamos una lista en typescript-->
+              {{item.nombre}} <!--Como solo vamos a mostrar el nombre ponemos item.nombre-->
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+      </div>
+
+      <div class="col-12">
+        <mat-form-field class="example-full-width"> <!--Como la clase no me esta tomando las 12 col entonces le ponemos 100% de ancho a todas las etiquetas mat-form-field-->
+          <mat-label>Numero Identificacion</mat-label>
+          <input matInput formControlName="numeroIdentificacion" type="number" > <!--No va a tener valor definido, es de tipo number-->
+        </mat-form-field>
+      </div>
+
+
+      <div class="col-12">
+        <mat-form-field class="example-full-width"> <!--Como la clase no me esta tomando las 12 col entonces le ponemos 100% de ancho a todas las etiquetas mat-form-field-->
+          <mat-label>Nombre</mat-label>
+          <input matInput formControlName="nombre" type="text"> <!--No va a tener valor definido, es de tipo number-->
+        </mat-form-field>
+      </div>
+
+      <div class="col-12">
+        <mat-form-field class="example-full-width"> <!--Como la clase no me esta tomando las 12 col entonces le ponemos 100% de ancho a todas las etiquetas mat-form-field-->
+          <mat-label>Apellidos</mat-label>
+          <input matInput formControlName="apellido"  type="text"> <!--No va a tener valor definido, es de tipo number-->
+        </mat-form-field>
+      </div>
+ 
+      <div class="col-12">
+      <mat-form-field >
+        <mat-label>Fecha de Nacimiento</mat-label>
+        <input matInput formControlName="fechaNacimiento" [matDatepicker]="picker">
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </div>
+
+    <div class="col-12">
+
+      <mat-form-field>
+        <mat-label>Tipo Sangre</mat-label>
+        <mat-select formControlName="idTipoSangre" >
+          <mat-option *ngFor="let item of selectTipoSangre" [value]="item.id"> <!--Para saber que es lo que tiene el select, creamos una lista en typescript-->
+            {{item.nombre}} <!--Como solo vamos a mostrar el nombre ponemos item.nombre-->
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+    </div>
+
+
+
+
+
+    </div>
+
+
+
+
+  </form>
+
+
+
+
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button class="btn btn-danger" mat-dialog-close>Cancelar</button>
+  <!--El boton registrar esta desabilitado hasta que el formulario sea valido(completado)-->
+  <button class="btn btn-success" (click)="guardar()" [disabled]="!formEstudiante.valid" >Guardar</button>
+</mat-dialog-actions>

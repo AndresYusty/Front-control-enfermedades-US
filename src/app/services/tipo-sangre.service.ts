@@ -14,7 +14,7 @@ export class TipoSangreService {
   constructor(private http: HttpClient) { }
    
 
-  public ListarTodos( ){
+  public listarTodos( ){
       
     return this.http.get<TipoSangre[]>(this.path);
     

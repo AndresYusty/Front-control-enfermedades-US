@@ -10,11 +10,7 @@ export class EstudianteService {
 
   private path: string= environment.urlApi+'/estudiante';
 
-
-
   constructor(private http: HttpClient ) {
-
-
 
    }
 

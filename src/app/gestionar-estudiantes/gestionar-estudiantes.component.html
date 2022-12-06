@@ -1,1 +1,29 @@
-<p>gestionar-estudiantes works!</p>
+
+<button class="btn btn-success" (click)="modalNuevoEstudiante(0)"> Nuevo Estudiante  </button>  <!--El parametro en 0 nos sirve para posteriormente actualizar-->
+
+<table class="table table-hover mt-5">
+    <thead>
+      <tr>
+
+        <th>Tipo Identificacion</th>
+        <th>Numero Identificacion</th>
+        <th>Nombre</th>
+        <th>Apellidos</th>
+        <th>Fecha Nacimiento</th>
+        <th>Tipo Sangre</th>
+      </tr>
+    </thead>
+    <tbody>
+        <!--Recorremos la lista-->
+      <tr *ngFor="let item of estudiantes">
+
+        <td>{{item.tipoIdentificacion.nombre}}</td>
+        <td>{{item.numeroIdentificacion}}</td>
+        <td>{{item.nombre}}</td>
+        <td>{{item.apellido}}</td>
+        <td>{{item.fechaNacimiento}}</td>
+        <td>{{item.tipoSangre.nombre}}</td>
+
+      </tr>
+    </tbody>
+  </table>
