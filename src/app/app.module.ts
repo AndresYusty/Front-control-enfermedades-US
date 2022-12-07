@@ -16,6 +16,7 @@ import { MatInputModule } from '@angular/material/input';
 import { ConfirmarEliminarComponent } from './confirmar-eliminar/confirmar-eliminar.component';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,6 +25,7 @@ import { ConfirmarEliminarComponent } from './confirmar-eliminar/confirmar-elimi
     GestionarEstudiantesComponent,
     GuardarEstudianteComponent,
     ConfirmarEliminarComponent,
+
 
   ],
   imports: [

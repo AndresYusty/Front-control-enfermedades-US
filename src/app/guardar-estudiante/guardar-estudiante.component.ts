@@ -155,7 +155,7 @@ export class GuardarEstudianteComponent implements OnInit {
 
   private actualizar(estudiante:Estudiante){
     this.servicioEstudiante.registrar(estudiante).subscribe( res => {
-      alert("Ha sido actualizado correctamente")
+     
       this.dialogRef.close(true);
    }, error =>{
      console.log(error)

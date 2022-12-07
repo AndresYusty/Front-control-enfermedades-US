@@ -4,6 +4,7 @@ import {MatDialog} from '@angular/material/dialog';
 import { Estudiante } from '../model/estudiante';
 import { TipoIdentificacionService } from '../services/tipo-identificacion.service';
 import { EstudianteService } from '../services/estudiante.service';
+import { ConfirmarEliminarComponent } from '../confirmar-eliminar/confirmar-eliminar.component';
 
 @Component({
   selector: 'app-gestionar-estudiantes',
@@ -66,6 +67,28 @@ export class GestionarEstudiantesComponent implements OnInit {
 
 
   public eliminar(id:number){
+    let dialogRef = this.dialog.open(ConfirmarEliminarComponent, {  
+      height: '180px',
+      width: '400px',
+ 
+
+  
+    })
+
+    dialogRef.afterClosed().subscribe(res=>{
+      if(res){
+        this.servicioEstudiantes.eliminar(id).subscribe( res=>{
+
+          alert("Se ha eliminado el estudiante")
+          this.listarEstudiante();
+        }
+          
+        )
+
+      }
+    })
+
+    
 
   }
 
