@@ -11,10 +11,14 @@
         <th>Apellidos</th>
         <th>Fecha Nacimiento</th>
         <th>Tipo Sangre</th>
+        <th>Acciones</th>
       </tr>
     </thead>
     <tbody>
-        <!--Recorremos la lista-->
+
+
+
+        <!--Recordemos que es un ngFor para cada estudiante-->
       <tr *ngFor="let item of estudiantes">
 
         <td>{{item.tipoIdentificacion.nombre}}</td>
@@ -23,7 +27,17 @@
         <td>{{item.apellido}}</td>
         <td>{{item.fechaNacimiento}}</td>
         <td>{{item.tipoSangre.nombre}}</td>
-
+        <td>
+          <div class="btn-group">
+            <button type="button" class="btn btn-warning" (click)="modalNuevoEstudiante(item.id)">Editar</button>
+            <button type="button" class="btn btn-danger" (click)="eliminar(item.id)">Eliminar</button>
+            
+          </div>
+        </td>
       </tr>
+
+
+
+
     </tbody>
   </table>

@@ -31,8 +31,26 @@ export class GestionarEstudiantesComponent implements OnInit {
     let dialogRef = this.dialog.open(GuardarEstudianteComponent, {  
       height: '700px',
       width: '800px',
+
+      //cuando abrimos por medio del dialog tambien recibimos un id con data
+      data: {
+        id:id,
+      }
+      
+  
     });
 
+    //despues de cerrado el componente me hace la peticion de listar los estudiante nuevamente
+    dialogRef.afterClosed().subscribe(res=>{
+      if(res){
+        this.listarEstudiante();
+      }
+
+    },error=>{
+      console.log("NO se ha podido recargar los estudiante")
+    })
+
+   
 
   }
 
@@ -43,6 +61,11 @@ export class GestionarEstudiantesComponent implements OnInit {
     },error =>{
       console.log("Ha habido un error")
     })
+
+  }
+
+
+  public eliminar(id:number){
 
   }
 

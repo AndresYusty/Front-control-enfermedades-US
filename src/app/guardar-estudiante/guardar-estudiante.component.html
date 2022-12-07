@@ -1,4 +1,7 @@
-<h2 mat-dialog-title>Registrar Estudiante</h2>
+<h2 mat-dialog-title  *ngIf="data.id == 0" >Registrar Estudiante</h2>
+<h2 mat-dialog-title  *ngIf="data.id != 0" >Actualizar Estudiante</h2>
+
+
 <mat-dialog-content>
 
 
@@ -82,5 +85,6 @@
 <mat-dialog-actions align="end">
   <button class="btn btn-danger" mat-dialog-close>Cancelar</button>
   <!--El boton registrar esta desabilitado hasta que el formulario sea valido(completado)-->
-  <button class="btn btn-success" (click)="guardar()" [disabled]="!formEstudiante.valid" >Guardar</button>
+  <button class="btn btn-success" (click)="guardar()" [disabled]="!formEstudiante.valid"   *ngIf="data.id == 0" >Registrar</button>
+  <button class="btn btn-warning" (click)="guardar()" [disabled]="!formEstudiante.valid"   *ngIf="data.id != 0" >Actualizar</button>
 </mat-dialog-actions>

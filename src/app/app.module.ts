@@ -13,6 +13,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
+import { ConfirmarEliminarComponent } from './confirmar-eliminar/confirmar-eliminar.component';
 
 
 @NgModule({
@@ -22,6 +23,7 @@ import { MatInputModule } from '@angular/material/input';
     GestionarEnfermedadesComponent,
     GestionarEstudiantesComponent,
     GuardarEstudianteComponent,
+    ConfirmarEliminarComponent,
 
   ],
   imports: [
@@ -35,6 +37,8 @@ import { MatInputModule } from '@angular/material/input';
     MatDatepickerModule,
     MatNativeDateModule,
     ReactiveFormsModule,
+    
+   
 
   ],
   providers: [

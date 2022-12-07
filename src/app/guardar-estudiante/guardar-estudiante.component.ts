@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Estudiante } from '../model/estudiante';
 import { TipoIdentificacion } from '../model/tipo-identificacion';
@@ -6,6 +6,9 @@ import { TipoSangre } from '../model/tipo-sangre';
 import { EstudianteService } from '../services/estudiante.service';
 import { TipoIdentificacionService } from '../services/tipo-identificacion.service';
 import { TipoSangreService } from '../services/tipo-sangre.service';
+import { MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+
+
 
 
 @Component({
@@ -21,11 +24,13 @@ export class GuardarEstudianteComponent implements OnInit {
 
   public selectTipoSangre: TipoSangre[]=[];  //Lista del select para tipo sangre 
 
-  constructor(
+  constructor( //inyecciones de servicios
 
     private servicioTipoIdentificacion: TipoIdentificacionService, //inyectamos los servicios para cargar las listar en los select
     private servicioTipoSangre: TipoSangreService,
-    private servicioEstudiante: EstudianteService
+    private servicioEstudiante: EstudianteService,
+    public dialogRef: MatDialogRef<GuardarEstudianteComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any
 
   ) { }
 
@@ -35,6 +40,7 @@ export class GuardarEstudianteComponent implements OnInit {
     this.inicializarEstudiante(); //cuando inicie el componente vamos a llamar al metodo
     this.cargarTipoIdentificacion();
     this.cargarTipoSangre();
+    this.cargarDatosEstudiante();
 
   }
 
@@ -75,6 +81,7 @@ export class GuardarEstudianteComponent implements OnInit {
   }
 
   public guardar(){
+    //recoge valores del formulario
     let tipoIdentificacion: TipoIdentificacion= new TipoIdentificacion();
     tipoIdentificacion.id= this.formEstudiante.controls['idTipoIdentificacion'].value;
 
@@ -88,6 +95,20 @@ export class GuardarEstudianteComponent implements OnInit {
     estudiante.apellido= this.formEstudiante.controls['apellido'].value;
     estudiante.fechaNacimiento= this.formEstudiante.controls['fechaNacimiento'].value;
     estudiante.tipoSangre= tipoSangre;
+
+
+
+    //reutilizamos el metodo guardar
+    //si es diferente de 0 es porque esta editando sino es porque esta registrando un nuevo estudiante
+    if(this.data.id != 0){
+      estudiante.id = this.data.id;
+      this.actualizar(estudiante);
+
+    }else{
+      this.registrar(estudiante);
+    }
+
+
    
     this.registrar(estudiante)
 
@@ -96,12 +117,52 @@ export class GuardarEstudianteComponent implements OnInit {
 
   public registrar(estudiante: Estudiante){
    this.servicioEstudiante.registrar(estudiante).subscribe( res => {
-      console.log(res)
+       alert("Se ha guardado correctamente")
+       this.dialogRef.close(true);
     }, error =>{
       console.log(error)
      }
 
    )
+  }
+
+  private cargarDatosEstudiante(){
+
+    if( this.data.id !=0){
+      this.servicioEstudiante.listarPorId(this.data.id).subscribe(res=>{
+        //cuando haga la peticion correctamente accedemos a los datos formEstudiante
+        this.formEstudiante.setValue({
+
+          idTipoIdentificacion: res.tipoIdentificacion.id ,
+          numeroIdentificacion: res.numeroIdentificacion,
+          nombre: res.nombre,
+          apellido: res.apellido,
+          fechaNacimiento: res.fechaNacimiento,
+          idTipoSangre: res.tipoSangre.id
+
+        }
+
+        )
+
+     
+      }, error=>{
+        console.log("No se han cargado los datos del estudiante")
+      })
+    }
+
+
+  }
+
+  private actualizar(estudiante:Estudiante){
+    this.servicioEstudiante.registrar(estudiante).subscribe( res => {
+      alert("Ha sido actualizado correctamente")
+      this.dialogRef.close(true);
+   }, error =>{
+     console.log(error)
+    }
+
+  )
+
   }
 
 
