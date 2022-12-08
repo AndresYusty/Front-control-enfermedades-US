@@ -70,8 +70,6 @@ export class GestionarEstudiantesComponent implements OnInit {
     let dialogRef = this.dialog.open(ConfirmarEliminarComponent, {  
       height: '180px',
       width: '400px',
- 
-
   
     })
 

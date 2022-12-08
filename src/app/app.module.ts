@@ -14,6 +14,7 @@ import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
 import { ConfirmarEliminarComponent } from './confirmar-eliminar/confirmar-eliminar.component';
+import { GuardarEnfermedadesComponent } from './guardar-enfermedades/guardar-enfermedades.component';
 
 
 
@@ -25,6 +26,7 @@ import { ConfirmarEliminarComponent } from './confirmar-eliminar/confirmar-elimi
     GestionarEstudiantesComponent,
     GuardarEstudianteComponent,
     ConfirmarEliminarComponent,
+    GuardarEnfermedadesComponent,
 
 
   ],

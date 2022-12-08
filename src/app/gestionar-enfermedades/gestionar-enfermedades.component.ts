@@ -1,4 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { GuardarEnfermedadesComponent } from '../guardar-enfermedades/guardar-enfermedades.component';
+import {MatDialog} from '@angular/material/dialog';
+import { EnfermedadEstudiante } from '../model/enfermedad-estudiante';
+import { EnfermedadEstudianteService } from '../services/enfermedad-estudiante.service';
+import { FormControl } from '@angular/forms';
+import { Estudiante } from '../model/estudiante';
+import { EstudianteService } from '../services/estudiante.service';
 
 @Component({
   selector: 'app-gestionar-enfermedades',
@@ -7,9 +14,64 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GestionarEnfermedadesComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    public dialog: MatDialog,
+    public servicioEnfermedad: EnfermedadEstudianteService,
+    public servicioEstudiante: EstudianteService
+    
+   
+  ) { }
+
+  public idEstudiante: FormControl = new FormControl()
+  public estudiantes: Estudiante[]=[]
+  public enfermedades: EnfermedadEstudiante[]=[]
 
   ngOnInit(): void {
+    this.listarEnfermedades()
+    this.cargarEstudiante()
+  }
+
+  public openModalEnfermedad(){
+
+    let dialogRef = this.dialog.open(GuardarEnfermedadesComponent, {  
+      height: '500px',
+      width: '700px',
+
+   
+  
+    });
+
+    dialogRef.afterClosed().subscribe(res=>{
+      if(res){
+        this.listarEnfermedades
+      }
+    })
+
+  }
+
+  private listarEnfermedades(){
+
+    this.servicioEnfermedad.listarTodos().subscribe(res=>{
+      this.enfermedades= res;
+    })
+
+  }
+
+  private cargarEstudiante(){
+    this.servicioEstudiante.listarTodos().subscribe(res=>{
+      this.estudiantes= res;
+    })
+  }
+
+  public filtrar(){
+
+    this.servicioEnfermedad.listarEnfermedadesPorEstudiante(this.idEstudiante.value).subscribe(res=>{
+        this.enfermedades = res;
+    } ,error => {
+      console.log("Ha ocurrido al filtrar la enfermedad por el estudiante");
+    }
+      )
+
   }
 
 }

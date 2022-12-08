@@ -1,1 +1,39 @@
-<button class="btn btn-success" >Nueva Enfermedad</button>
+
+<button class="btn btn-success" (click)="openModalEnfermedad()">Nueva enfermedad</button>
+
+<div class="row mt-4">
+    <div class="col-6">
+
+        <mat-form-field>
+            <mat-label [formControl]="idEstudiante">Estudiante</mat-label>
+            <mat-select>
+              <mat-option *ngFor="let item of estudiantes" [value]="item.id">
+                {{item.numeroIdentificacion}} - {{item.nombre}} {{item.apellido}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+    </div>
+    <div class="col-6">
+
+        <button class="btn btn-primary" (click)="filtrar()" [disabled]="!idEstudiante.value">Filtrar</button>
+        
+    </div>
+</div>
+
+<table class="table table-hover mt-4">
+    <thead>
+        <tr>
+            <th>Estudiante</th>
+            <th>Nombre enfermedad</th>
+            <th>Observacion</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of enfermedades">
+            <td>{{item.estudiante.numeroIdentificacion}} - {{item.estudiante.nombre}} {{item.estudiante.apellido}}</td>
+            <td>{{item.nombre}}</td>
+            <td>{{item.observacion}}</td>
+        </tr>
+    </tbody>
+</table>
