@@ -13,9 +13,7 @@ export class EnfermedadEstudianteService {
 
   constructor( private http: HttpClient) { } //necesitamos que el http client haga las peticiones
   
-  
-
-
+   
    public listarTodos(){
 
     return this.http.get<EnfermedadEstudiante[]>(this.path) //obtenemos por medio del http el servicio de listar enfermedad estudiante

@@ -5,16 +5,18 @@ import { AppComponent } from './app.component';
 import { GestionarEnfermedadesComponent } from './gestionar-enfermedades/gestionar-enfermedades.component';
 import { GestionarEstudiantesComponent } from './gestionar-estudiantes/gestionar-estudiantes.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { GuardarEstudianteComponent } from './guardar-estudiante/guardar-estudiante.component';
 import {MatDialog, MatDialogModule} from '@angular/material/dialog';
 import {MatSelectModule} from '@angular/material/select';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
 import { ConfirmarEliminarComponent } from './confirmar-eliminar/confirmar-eliminar.component';
 import { GuardarEnfermedadesComponent } from './guardar-enfermedades/guardar-enfermedades.component';
+import { LoginComponent } from './login/login.component';
+import { AuthInterceptor } from './interceptors/auth-interceptor';
 
 
 
@@ -27,6 +29,7 @@ import { GuardarEnfermedadesComponent } from './guardar-enfermedades/guardar-enf
     GuardarEstudianteComponent,
     ConfirmarEliminarComponent,
     GuardarEnfermedadesComponent,
+    LoginComponent,
 
 
   ],
@@ -41,13 +44,17 @@ import { GuardarEnfermedadesComponent } from './guardar-enfermedades/guardar-enf
     MatDatepickerModule,
     MatNativeDateModule,
     ReactiveFormsModule,
+    FormsModule
     
-   
 
   ],
   providers: [
-    {provide: MAT_DATE_LOCALE, useValue: 'es'} //Agregamos el idioma que vamos a usar en las fechas
-
+    {provide: MAT_DATE_LOCALE, useValue: 'es'}, //Agregamos el idioma que vamos a usar en las fechas
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
 
   ],
   bootstrap: [AppComponent]

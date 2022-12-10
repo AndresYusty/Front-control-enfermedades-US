@@ -5,7 +5,7 @@
     <div class="col-6">
 
         <mat-form-field>
-            <mat-label [formControl]="idEstudiante">Estudiante</mat-label>
+            <mat-label [formControl]="idEstudiante" ngDefaultControl>Estudiante</mat-label>
             <mat-select>
               <mat-option *ngFor="let item of estudiantes" [value]="item.id">
                 {{item.numeroIdentificacion}} - {{item.nombre}} {{item.apellido}}

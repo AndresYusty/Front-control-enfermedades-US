@@ -66,11 +66,18 @@ export class GestionarEnfermedadesComponent implements OnInit {
   public filtrar(){
 
     this.servicioEnfermedad.listarEnfermedadesPorEstudiante(this.idEstudiante.value).subscribe(res=>{
-        this.enfermedades = res;
-    } ,error => {
-      console.log("Ha ocurrido al filtrar la enfermedad por el estudiante");
+      this.enfermedades = res;
+    }, error=>{
+      console.log("Ha ocurrido un error con el filtro");
+
     }
-      )
+    
+
+    
+
+    )
+
+
 
   }
 
