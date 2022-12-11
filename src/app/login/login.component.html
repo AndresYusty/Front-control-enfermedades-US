@@ -1,9 +1,40 @@
-<div class="login-container">
-    <form>
-      <label>Username</label>
-      <input type="text" [(ngModel)]="username" name="username">
-      <label>Password</label>
-      <input type="password" [(ngModel)]="password" name="password">
-      <button (click)="login()">Login</button>
-    </form>
-  </div>
+<style>
+  .contenedor {
+
+    border: 2px solid brown;
+    margin: auto;
+    width: 370px;
+    height: 350px;
+
+  }
+
+  input{
+    width: 100%;
+  }
+
+  button{
+    width: 100%;
+  }
+  
+  h3{
+    text-align: center;
+    font-weight: bolder;
+    border-bottom: 2px solid brown;
+  }
+
+</style>
+
+
+
+
+
+<div class="login-container mt-5 contenedor">
+  <form>
+    <h3>INGRESO AL PORTAL</h3>
+    <label>Nombre de usuario</label>
+    <input type="text" [(ngModel)]="username" name="username">
+    <label>Contraseña</label>
+    <input type="password" [(ngModel)]="password" name="password">
+    <button (click)="login()">Entrar <i class="bi bi-lock-fill"></i></button>
+  </form>
+</div>

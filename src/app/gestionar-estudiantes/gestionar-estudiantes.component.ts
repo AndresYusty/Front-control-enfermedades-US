@@ -5,6 +5,7 @@ import { Estudiante } from '../model/estudiante';
 import { TipoIdentificacionService } from '../services/tipo-identificacion.service';
 import { EstudianteService } from '../services/estudiante.service';
 import { ConfirmarEliminarComponent } from '../confirmar-eliminar/confirmar-eliminar.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-gestionar-estudiantes',
@@ -16,7 +17,8 @@ export class GestionarEstudiantesComponent implements OnInit {
   constructor(
     private servicioTipoIdentificacion: TipoIdentificacionService,
     public dialog: MatDialog,
-    private servicioEstudiantes: EstudianteService
+    private servicioEstudiantes: EstudianteService,
+    private router: Router
     ) { }
 
   public estudiantes: Estudiante[]=[];
@@ -86,7 +88,14 @@ export class GestionarEstudiantesComponent implements OnInit {
       }
     })
 
-    
+
+  }
+
+  public logout(){
+    localStorage.removeItem('token');
+
+    // Redirigimos al usuario a la página de login
+    this.router.navigate(['/login']);
 
   }
 

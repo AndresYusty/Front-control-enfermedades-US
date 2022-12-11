@@ -20,6 +20,8 @@ import { AuthInterceptor } from './interceptors/auth-interceptor';
 
 
 
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,6 +32,7 @@ import { AuthInterceptor } from './interceptors/auth-interceptor';
     ConfirmarEliminarComponent,
     GuardarEnfermedadesComponent,
     LoginComponent,
+  
 
 
   ],

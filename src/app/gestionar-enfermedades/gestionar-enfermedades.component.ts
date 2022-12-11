@@ -6,6 +6,7 @@ import { EnfermedadEstudianteService } from '../services/enfermedad-estudiante.s
 import { FormControl } from '@angular/forms';
 import { Estudiante } from '../model/estudiante';
 import { EstudianteService } from '../services/estudiante.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-gestionar-enfermedades',
@@ -17,7 +18,8 @@ export class GestionarEnfermedadesComponent implements OnInit {
   constructor(
     public dialog: MatDialog,
     public servicioEnfermedad: EnfermedadEstudianteService,
-    public servicioEstudiante: EstudianteService
+    public servicioEstudiante: EstudianteService,
+    private router: Router
     
    
   ) { }
@@ -78,6 +80,14 @@ export class GestionarEnfermedadesComponent implements OnInit {
     )
 
 
+
+  }
+
+  public logout(){
+    localStorage.removeItem('token');
+
+    // Redirigimos al usuario a la página de login
+    this.router.navigate(['/login']);
 
   }
 

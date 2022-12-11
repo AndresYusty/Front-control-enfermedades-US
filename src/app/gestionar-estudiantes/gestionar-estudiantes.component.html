@@ -1,5 +1,25 @@
+<nav class="navbar navbar-expand-lg " style="background-color: #DFD4A6; height: 40px;">
+  <div class="container-fluid">
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/gestionar-estudiantes">Gestionar Estudiantes</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/gestionar-enfermedades">Gestionar Enfermedades</a>
+        </li>
+      </ul> 
+    </div>
+  </div>
+</nav>
 
+
+<div class="container mt-4">
 <button class="btn btn-success" (click)="modalNuevoEstudiante(0)"> Nuevo Estudiante  </button>  <!--El parametro en 0 nos sirve para posteriormente actualizar-->
+
+<button class="btn btn-light" (click)="logout()" style="float: right;">Cerrar sesión <i class="bi bi-box-arrow-right"></i></button>
+
+
 
 <table class="table table-hover mt-5">
     <thead>
@@ -41,3 +61,6 @@
 
     </tbody>
   </table>
+
+
+</div>
