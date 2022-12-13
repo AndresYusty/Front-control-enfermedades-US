@@ -3,7 +3,7 @@ FROM node:16.17.1 as node
 WORKDIR /app
 COPY . .
 RUN npm install --force
-RUN node --max_old_space_size=7000 node_modules/@angular/cli/bin/ng build
+RUN node --max_old_space_size=7000 node_modules/@angular/cli/bin/ng build --configuration production
 
 # stage 2
 FROM nginx:1.16.1-alpine

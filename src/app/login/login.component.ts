@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-login',
@@ -29,7 +30,7 @@ export class LoginComponent {
 
     const payload = `username=${this.username}&password=${this.password}&grant_type=password`;
 
-    this.http.post('http://localhost:8282/oauth/token', payload, { headers })
+    this.http.post(`${environment.host}/oauth/token`, payload, { headers })
       .subscribe((res: any ) => {
         const token = res.access_token;
         localStorage.setItem('token', token);
