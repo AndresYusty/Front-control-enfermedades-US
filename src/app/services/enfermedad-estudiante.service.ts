@@ -27,11 +27,11 @@ export class EnfermedadEstudianteService {
 
    }
 
-   public listarEnfermedadesPorEstudiante(idEstudiante:number){
-                       //va a devolver una lista y su url es
-    return this.http.get<EnfermedadEstudiante[]>(`${this.path}/listarEnfermedadPorEstudiante/${idEstudiante}`);
 
-   }
+   public listarPorIdEstudiante(idEstudiante: number) {
+                         //va a devolver una lista y su url es
+    return this.http.get<EnfermedadEstudiante[]>(`${this.path}/listarPorIdEstudiante/${idEstudiante}`);
+  }
 
 
 
